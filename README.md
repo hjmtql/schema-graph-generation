@@ -1,7 +1,7 @@
 # Schema Graph Generation
 
 
-## Start Database with ./schema
+## Start database with ./schema
 
 start
 
@@ -15,8 +15,16 @@ stop
 docker-compose down
 ```
 
-## Generate Graph to ./output
+## Generate graph to ./output
+
+generate
 
 ```
-docker run -v $PWD/output:/output --net=host schemaspy/schemaspy:6.1.0 -t pgsql -host 127.0.0.1:5432 -db mydb -u myuser -p mypassword -s master
+docker run -v $PWD/output:/output --net=host schemaspy/schemaspy:6.1.0 -t pgsql -host 127.0.0.1:5432 -db mydb -u myuser -p mypassword -s trans
+```
+
+delete
+
+```
+rm -r ./output/*
 ```

@@ -1,1 +1,1 @@
-create schema master;
+create schema trans;
