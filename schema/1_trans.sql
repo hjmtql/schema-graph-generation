@@ -1,6 +1,12 @@
+create table trans.account
+(
+    id integer primary key
+);
+
 create table trans.user
 (
     id integer primary key,
+    account_id integer references trans.account(id) unique not null,
     name varchar(256) not null
 );
 
