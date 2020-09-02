@@ -10,5 +10,18 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_DB: mydb
       POSTGRES_PASSWORD: mypassword
+  schemaspy:
+    image: schemaspy/schemaspy:6.1.0
+    command: ["-t", "pgsql", "-host", "db:5432", "-u", "myuser", "-p", "mypassword", "-db", "mydb", "-s", "trans"]
+    depends_on:
+      - db
+    volumes:
+      - ./output:/output
+  web:
+    image: nginx:1.19.2
+    volumes:
+      - ./output:/usr/share/nginx/html:ro
+    depends_on:
+      - schemaspy
     ports:
-      - 5432:5432
+      - 8080:80
